@@ -1,3 +1,10 @@
+#First person controller credit
+By ColormaticStudios / Zakarya (Uploader to Godot Asset Library)
+https://godotengine.org/asset-library/asset/2087
+https://github.com/ColormaticStudios/quality-godot-first-person
+
+#Original README
+
 # quality-godot-first-person
 Actually good first person controller for Godot 4.1
 MIT License (credit Colormatic Studios)
