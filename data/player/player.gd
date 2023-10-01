@@ -37,6 +37,12 @@ func _ready():
 	parts.camera.current = true
 
 func _process(delta):
+	if Input.is_action_just_pressed("camera_view"):
+		if $head/camera.current:
+			$head/thirdPersonCamera.current = true
+		else:
+			$head/camera.current = true
+	
 	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
 		sprinting = true
 		speed = sprint_speed
