@@ -52,6 +52,10 @@ libraries = {
 "": SubResource("AnimationLibrary_36ogt")
 }
 
+[node name="RayCast3D" type="RayCast3D" parent="head/camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -50, 0)
+
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_phygr")
 

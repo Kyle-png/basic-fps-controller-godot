@@ -77,6 +77,11 @@ func _physics_process(delta):
 		parts.camera_animation.play("reset", 0.5)
 
 	move_and_slide()
+	
+	#Raycast
+	if Input.is_action_pressed("primary_fire") and $head/camera/RayCast3D.is_colliding():
+		var collider = $head/camera/RayCast3D.get_collider()
+		print("Player Recognized Object: " + collider.name)
 
 func _input(event):
 	if event is InputEventMouseMotion:
