@@ -33,11 +33,11 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_phygr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwsb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijbk0"]
 albedo_color = Color(0.917647, 0.529412, 0.168627, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3oyv7"]
-material = SubResource("StandardMaterial3D_3iwsb")
+material = SubResource("StandardMaterial3D_ijbk0")
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_u1w3t")
@@ -57,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 target_position = Vector3(0, -50, 0)
 
 [node name="thirdPersonCamera" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 2.4999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, 0.75, 2.775)
 
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_phygr")

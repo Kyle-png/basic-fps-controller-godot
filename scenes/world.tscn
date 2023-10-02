@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=14 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="PackedScene" uid="uid://cwiu8nsyij4gn" path="res://data/player/player.tscn" id="1_tnv5a"]
 [ext_resource type="Script" path="res://data/scripts/world.gd" id="1_x87ln"]
@@ -25,6 +25,14 @@ albedo_texture = ExtResource("3_hpn24")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i11u5"]
 albedo_texture = ExtResource("4_x8haq")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0mfo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwsb"]
+albedo_color = Color(0.917647, 0.529412, 0.168627, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6audn"]
+material = SubResource("StandardMaterial3D_3iwsb")
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_x87ln")
@@ -63,3 +71,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4952, 11.9374, 12.0381)
 use_collision = true
 size = Vector3(1, 10.5584, 14)
 material = SubResource("StandardMaterial3D_i11u5")
+
+[node name="Wall" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(1.025, 0, 0, 0, 2.246, 0, 0, 0, 1.5, -12, 7.8, 12)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6572, 8.90519, 12.298)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_x0mfo")
+
+[node name="body" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_6audn")
+skeleton = NodePath("../..")

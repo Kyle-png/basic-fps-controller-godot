@@ -21,9 +21,11 @@ var crouch_player_y_scale = 0.75
 @onready var parts = {
 	"head": $head,
 	"camera": $head/camera,
+	"camera2": $head/thirdPersonCamera,
 	"camera_animation": $head/camera/camera_animation,
 	"body": $body,
-	"collision": $collision
+	"collision": $collision,
+	"ray": $head/camera/RayCast3D
 }
 @onready var world = get_parent()
 
@@ -37,11 +39,18 @@ func _ready():
 	parts.camera.current = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("camera_view"):
-		if $head/camera.current:
-			$head/thirdPersonCamera.current = true
+	
+	#Change camera button
+	if Input.is_action_just_pressed("change_pov"):
+		
+		if parts.camera.current:
+			parts.ray.reparent(parts.camera2)
+			parts.ray.position = Vector3.ZERO
+			parts.camera2.current = true
 		else:
-			$head/camera.current = true
+			parts.ray.reparent(parts.camera)
+			parts.ray.position = Vector3.ZERO
+			parts.camera.current = true
 	
 	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
 		sprinting = true
@@ -85,8 +94,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	#Raycast
-	if Input.is_action_pressed("primary_fire") and $head/camera/RayCast3D.is_colliding():
-		var collider = $head/camera/RayCast3D.get_collider()
+	if Input.is_action_pressed("primary_fire") and parts.ray.is_colliding():
+		var collider = parts.ray.get_collider()
 		print("Player Recognized Object: " + collider.name)
 
 func _input(event):
