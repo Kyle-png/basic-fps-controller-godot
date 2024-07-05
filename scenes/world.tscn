@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvbgf6drv86br"]
+[gd_scene load_steps=12 format=3 uid="uid://dvbgf6drv86br"]
 
 [ext_resource type="PackedScene" uid="uid://cwiu8nsyij4gn" path="res://data/player/player.tscn" id="1_tnv5a"]
 [ext_resource type="Script" path="res://data/scripts/world.gd" id="1_x87ln"]
 [ext_resource type="Texture2D" uid="uid://bfmbndv1sge56" path="res://data/sky.exr" id="3_5hgqm"]
 [ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://data/prototype/Green/texture_01.png" id="3_hpn24"]
 [ext_resource type="Texture2D" uid="uid://cjmy06h4u2c4r" path="res://data/prototype/Orange/texture_01.png" id="4_x8haq"]
+[ext_resource type="Shape3D" uid="uid://5yqrhii1eyku" path="res://shapes/BoundingPlane.tres" id="6_lbm7b"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6bxyf"]
 panorama = ExtResource("3_5hgqm")
@@ -27,6 +28,7 @@ albedo_texture = ExtResource("3_hpn24")
 albedo_texture = ExtResource("4_x8haq")
 
 [node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0120602, -0.0294809, -0.00366306)
 script = ExtResource("1_x87ln")
 
 [node name="player" parent="." instance=ExtResource("1_tnv5a")]
@@ -63,3 +65,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4952, 11.9374, 12.0381)
 use_collision = true
 size = Vector3(1, 10.5584, 14)
 material = SubResource("StandardMaterial3D_i11u5")
+
+[node name="Bounds" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds"]
+shape = ExtResource("6_lbm7b")
